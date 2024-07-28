@@ -1,0 +1,38 @@
+<%- include("partials/header.ejs") %>
+
+<div class="title">
+    <h1>Welcome to Ultra Blogs</h1>
+</div>
+
+<div class="container">
+    <div class="text-display">
+        <div class="scrollable-container">
+            <% if (blogs && blogs.length > 0) { %>
+                <% let i=0; %>
+                <% blogs.forEach(blog => { %>
+                    <div class="blog-entry">
+                        
+                        <h2><%= ++i %> <%= blog.title %></h2>
+                        <p><%= blog.content %></p>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <h1>Nothing to show</h1>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="write-box">
+        <form action="/submit" method="post">
+            <label for="title">Title:</label>
+            <input class="blog-title" type="text" name="title" id="title" required><br>
+
+            <label for="content">Write your text here:</label>
+            <textarea class="write" id="content" name="content" placeholder="Write something interesting..." required></textarea>
+
+            <input type="submit" value="Post Now">
+        </form>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
